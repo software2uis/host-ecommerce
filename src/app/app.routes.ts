@@ -9,12 +9,12 @@ export const routes: Routes = [
   },
   {
     path: "catalogo-app",
-    loadComponent: ()=>{
+    loadChildren: ()=>{
       return loadRemoteModule({
         remoteEntry: 'http://localhost:4300/remoteEntry.js',
         remoteName: 'mfe_catalogo',
-        exposedModule: './ProductCatalog'
-      }).then(m => m.AppComponent)
+        exposedModule: './RoutingModule'
+      }).then(m => m.routes)
           .catch(err => console.error(err))
       ;
 

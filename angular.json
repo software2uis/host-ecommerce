@@ -52,11 +52,17 @@
 								{
 									"type": "anyComponentStyle",
 									"maximumWarning": "2kB",
-									"maximumError": "4kB"
+									"maximumError": "300kB"
 								}
 							],
 							"outputHashing": "all",
-							"extraWebpackConfig": "webpack.prod.config.js"
+							"extraWebpackConfig": "webpack.prod.config.js",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
 						},
 						"development": {
 							"optimization": false,

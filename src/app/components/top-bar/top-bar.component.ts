@@ -8,6 +8,8 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { Router } from '@angular/router';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
+import { ProductsService } from '../../services/products.service';
+import { catchError, of, tap } from 'rxjs';
 @Component({
   selector: 'app-top-bar',
   standalone: true,
@@ -33,32 +35,24 @@ export class TopBarComponent {
 
   suggestions: string[] = [];
 
+  productsService:ProductsService = inject(ProductsService);
+
   ngOnInit() {
-    this.updateDataHandler = (event: CustomEvent) => {
-      const products = event.detail.products as ResponsePaginated;
 
-      this.suggestions = products.content.map((product) => product.name);
-
-
-    };
-    window.addEventListener('productSuggestionResponse', this.updateDataHandler);
-  }
-
-  ngOnDestroy() {
-    window.removeEventListener('productSuggestionResponse', this.updateDataHandler);
   }
 
 
-  sendQuery(text: string) {
 
+  sendQuery(query: string) {
 
-
-    const event = new CustomEvent('productSuggestionRequest', {
-      detail: { query: text },
-    });
-
-
-    window.dispatchEvent(event);
+    this.productsService.getAllProductsByQuery(query)
+    .pipe(
+      tap(
+        (products:ResponsePaginated)=>{
+          this.suggestions = products.content.map((product)=>product.name);
+        }
+      )
+    ).subscribe();
 
 
   }

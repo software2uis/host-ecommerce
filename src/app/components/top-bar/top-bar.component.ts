@@ -1,19 +1,20 @@
-import { Product, ResponsePaginated } from './../../models/product.interface';
+import { Product } from './../../models/product.interface';
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToolbarModule } from 'primeng/toolbar';
-import { Router } from '@angular/router';
-import { AutoCompleteModule } from 'primeng/autocomplete';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { AutoCompleteModule, AutoCompleteSelectEvent } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
 import { ProductsService } from '../../services/products.service';
 import { catchError, of, tap } from 'rxjs';
+import { ResponsePaginated } from '../../models/response-paginated.interface';
 @Component({
   selector: 'app-top-bar',
   standalone: true,
-  imports: [ButtonModule, FormsModule, ToolbarModule, InputTextModule, AutoCompleteModule, IconFieldModule, InputIconModule,],
+  imports: [ButtonModule, RouterModule, FormsModule, ToolbarModule, InputTextModule, AutoCompleteModule, IconFieldModule, InputIconModule,],
   templateUrl: './top-bar.component.html',
   styleUrl: './top-bar.component.scss'
 })
@@ -33,7 +34,7 @@ export class TopBarComponent {
 
   selectedItem: Product | undefined;
 
-  suggestions: string[] = [];
+  suggestions: Product[] = [];
 
   productsService:ProductsService = inject(ProductsService);
 
@@ -45,11 +46,11 @@ export class TopBarComponent {
 
   sendQuery(query: string) {
 
-    this.productsService.getAllProductsByQuery(query)
+    this.productsService.getSuggestions(query)
     .pipe(
       tap(
-        (products:ResponsePaginated)=>{
-          this.suggestions = products.content.map((product)=>product.name);
+        (products:Product[])=>{
+          this.suggestions = products;
         }
       )
     ).subscribe();
@@ -66,6 +67,12 @@ export class TopBarComponent {
 
   }
 
+  goToProduct(event:AutoCompleteSelectEvent){
+
+    const product = event.value as Product;
+    this.router.navigateByUrl(`/product-detail/${product.id}`);
+
+  }
 
 
 

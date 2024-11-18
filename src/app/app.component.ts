@@ -13,7 +13,6 @@ import { TopBarComponent } from "./components/top-bar/top-bar.component";
 })
 export class AppComponent {
   title = 'ecommerce-app';
-  updateDataHandler:any;
   // @ViewChild('remoteContainer1', { read: ViewContainerRef, static: true }) container1!: ViewContainerRef;
 
 
@@ -34,16 +33,6 @@ export class AppComponent {
 
   // }
 
-  ngOnInit() {
-    this.updateDataHandler = (event: CustomEvent) => {
-      console.log('Received event from MFE1:', event.detail);
 
-    };
-    window.addEventListener('productsQuery', this.updateDataHandler);
-  }
-
-  ngOnDestroy() {
-    window.removeEventListener('productsQuery', this.updateDataHandler);
-  }
 
 }

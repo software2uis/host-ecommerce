@@ -9,6 +9,10 @@ export const routes: Routes = [
   //   pathMatch: "full"
   // },
   {
+    path: 'login',
+    loadComponent:(() => import('./components/login/login.component').then(c => c.LoginComponent)),
+  },
+  {
     path: "",
     loadChildren: ()=>{
       return loadRemoteModule({
@@ -20,5 +24,5 @@ export const routes: Routes = [
       ;
 
     }
-  }
+  },
 ];

@@ -30,8 +30,10 @@ export class LoginComponent {
       .subscribe({
         next: (response) => {
           this.message = response;
-          this.router.navigate(['']);
-
+          
+          setTimeout(() => {
+            this.router.navigate(['']);
+          }, 1000);
 
         },
         error: (err) => {

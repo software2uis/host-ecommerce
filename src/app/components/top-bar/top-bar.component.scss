@@ -11,19 +11,34 @@
 //   min-width: 210px;
 // }
 
+p-toolbar.layout-topbar{
+  background-color: #b3b3b3;
+  display: flex;
+  padding: 1rem;
+}
+
 .p-toolbar-group-end{
   gap:3rem;
   display: flex;
   flex-wrap: nowrap;
 }
 
+
+
 .title{
   font-size: 1.5rem;
   font-weight: 700;
-  color: #333;
+  color: #000000;
   margin: 0;
+  margin-left: 0px;
   line-height: 5rem;
   white-space: nowrap;
+  transition: margin-left 0.3s ease; 
+}
+@media (max-width: 800px) {
+  .title {
+    margin-left: -40px; 
+  }
 }
 
 .icon{
@@ -36,6 +51,20 @@
   display: flex;
 }
 
-:host ::ng-deep .p-element.p-autocomplete-input.p-inputtext.p-component{
+:host ::ng-deep .p-element.p-autocomplete-input.p-inputtext.p-component {
   padding-left: 30px;
+  width: 600px;
+  max-width: 100%; 
+  transition: width 0.3s ease; 
+}
+@media (max-width: 1200px) {
+  :host ::ng-deep .p-element.p-autocomplete-input.p-inputtext.p-component {
+    width: 450px; 
+    margin-right: -10px;
+  }
+}
+@media (max-width: 950px) {
+  :host ::ng-deep .p-element.p-autocomplete-input.p-inputtext.p-component {
+    width: 250px;
+  }
 }

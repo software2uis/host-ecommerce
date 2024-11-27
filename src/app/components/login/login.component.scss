@@ -6,6 +6,7 @@
     width: 100%;
   }
   
+  
   .Login-component {
     display: flex;
     flex-direction: column;
@@ -89,6 +90,16 @@
     p {
       margin-top: 15px;
       color: #555;
-      font-size: 14px;
     }
+  }
+  .title-label {
+    text-align: center;
+    margin-bottom: 100px;
+  }
+  
+  .text-login {
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
   }

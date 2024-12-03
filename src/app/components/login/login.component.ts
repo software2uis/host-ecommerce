@@ -30,10 +30,13 @@ export class LoginComponent {
       .subscribe({
         next: (response) => {
           this.message = response;
-          
-          setTimeout(() => {
-            this.router.navigate(['']);
-          }, 1000);
+
+          if(this.message !== 'Invalid username or password'){
+            setTimeout(()=>{
+              this.router.navigate(['']);
+            },200)
+          }
+
 
         },
         error: (err) => {

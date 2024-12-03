@@ -30,7 +30,9 @@ export class LoginComponent {
       .subscribe({
         next: (response) => {
           this.message = response;
-          this.router.navigate(['']);
+          if(this.message !== 'Invalid username or password'){
+            this.router.navigate(['']);
+          }
 
 
         },

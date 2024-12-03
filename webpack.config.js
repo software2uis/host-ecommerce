@@ -37,7 +37,8 @@ module.exports = {
         // },
 
         remotes: {
-          "mfe_catalogo": "http://localhost:4300/remoteEntry.js",
+          "mfe_catalogo": "http://10.6.101.92/remoteEntry.js",
+          "mfe_carrito": "http://localhost:4600/remoteEntry.js",
 
       },
 

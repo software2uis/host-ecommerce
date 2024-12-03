@@ -13,6 +13,19 @@ export const routes: Routes = [
     loadComponent:(() => import('./components/login/login.component').then(c => c.LoginComponent)),
   },
   {
+    path: "carrito",
+    loadChildren: ()=>{
+      return loadRemoteModule({
+        remoteEntry: `${environments.mfCarrito}/remoteEntry.js`,
+        remoteName: 'mfe_carrito',
+        exposedModule: './RoutingModule'
+      }).then(m => m.routes)
+      .catch(err => console.error(err))
+      ;
+
+    }
+  },
+  {
     path: "",
     loadChildren: ()=>{
       return loadRemoteModule({

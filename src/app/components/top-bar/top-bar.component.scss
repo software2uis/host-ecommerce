@@ -33,11 +33,11 @@ p-toolbar.layout-topbar{
   margin-left: 0px;
   line-height: 5rem;
   white-space: nowrap;
-  transition: margin-left 0.3s ease; 
+  transition: margin-left 0.3s ease;
 }
 @media (max-width: 800px) {
   .title {
-    margin-left: -40px; 
+    margin-left: -40px;
   }
 }
 
@@ -54,12 +54,12 @@ p-toolbar.layout-topbar{
 :host ::ng-deep .p-element.p-autocomplete-input.p-inputtext.p-component {
   padding-left: 30px;
   width: 600px;
-  max-width: 100%; 
-  transition: width 0.3s ease; 
+  max-width: 100%;
+  transition: width 0.3s ease;
 }
 @media (max-width: 1200px) {
   :host ::ng-deep .p-element.p-autocomplete-input.p-inputtext.p-component {
-    width: 450px; 
+    width: 450px;
     margin-right: -10px;
   }
 }
@@ -67,4 +67,22 @@ p-toolbar.layout-topbar{
   :host ::ng-deep .p-element.p-autocomplete-input.p-inputtext.p-component {
     width: 250px;
   }
+}
+
+:host ::ng-deep p-speeddial{
+  ul{
+    padding-left: unset;
+  }
+
+  a{
+    color: unset;
+    text-decoration: none;
+  }
+  button{
+    border-radius:50%;
+  }
+}
+
+ol, ul{
+  padding-left: unset;
 }

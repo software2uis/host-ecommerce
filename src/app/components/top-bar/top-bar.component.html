@@ -37,12 +37,19 @@
     </span>
   </p-button>
 
-
+<!--
   <p-button [rounded]="true" [text]="true"   [routerLink]="['/login']" severity="secondary">
     <span class="material-symbols-outlined" >
       account_circle
     </span>
-  </p-button>
+  </p-button> -->
+  <p-speedDial
+    [model]="dropButtons"
+    direction="down"
+    transitionDelay="80"
+    showIcon="pi pi-bars"
+    hideIcon="pi pi-times"
+    buttonClassName="p-button-outlined" />
 </div>
 </div>
 </p-toolbar>

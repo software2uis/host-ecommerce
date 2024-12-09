@@ -38,7 +38,8 @@ module.exports = {
 
         remotes: {
           "mfe_catalogo": "http://10.6.101.92/remoteEntry.js",
-          "mfe_carrito": "http://localhost:4600/remoteEntry.js",
+          "mfe_carrito": "http://10.6.101.92:90/remoteEntry.js",
+          "mfe_ordenes": "http://10.6.101.92:100/remoteEntry.js"
 
       },
 
@@ -47,6 +48,8 @@ module.exports = {
           "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
           "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
           "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+
+          bootstrap: { singleton: true, strictVersion: false }, // Adjust strictVersion if required
 
           ...sharedMappings.getDescriptors()
         })

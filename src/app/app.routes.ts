@@ -26,6 +26,19 @@ export const routes: Routes = [
     }
   },
   {
+    path : "checkout",
+    loadChildren: ()=>{
+      return loadRemoteModule({
+        remoteEntry: `${environments.mfOrdenes}/remoteEntry.js`,
+        remoteName: 'mfe_ordenes',
+        exposedModule: './RoutingModule'
+      }).then(m => m.routes)
+          .catch(err => console.error(err))
+      ;
+
+    }
+  },
+  {
     path: "",
     loadChildren: ()=>{
       return loadRemoteModule({

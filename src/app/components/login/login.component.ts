@@ -32,6 +32,7 @@ export class LoginComponent {
           this.message = response;
 
           if(this.message !== 'Invalid username or password'){
+            localStorage.setItem('username', this.username);
             setTimeout(()=>{
               this.router.navigate(['']);
             },200)
@@ -54,6 +55,7 @@ export class LoginComponent {
       .subscribe({
         next: (response) => {
           this.message = response;
+          localStorage.removeItem('username');
         },
         error: (err) => {
           this.message = 'Logout failed: ' + err.error;

@@ -10,11 +10,13 @@ import { AutoCompleteModule, AutoCompleteSelectEvent } from 'primeng/autocomplet
 import { FormsModule } from '@angular/forms';
 import { ProductsService } from '../../services/products.service';
 import { catchError, of, tap } from 'rxjs';
+import { SpeedDialModule } from 'primeng/speeddial';
 import { ResponsePaginated } from '../../models/response-paginated.interface';
+import { MenuItem } from 'primeng/api';
 @Component({
   selector: 'app-top-bar',
   standalone: true,
-  imports: [ButtonModule, RouterModule, FormsModule, ToolbarModule, InputTextModule, AutoCompleteModule, IconFieldModule, InputIconModule,],
+  imports: [ButtonModule,SpeedDialModule, RouterModule, FormsModule, ToolbarModule, InputTextModule, AutoCompleteModule, IconFieldModule, InputIconModule,],
   templateUrl: './top-bar.component.html',
   styleUrl: './top-bar.component.scss'
 })
@@ -31,6 +33,7 @@ export class TopBarComponent {
 
 
   items: Product[] | undefined;
+  dropButtons: MenuItem[] = [];
 
   selectedItem: Product | undefined;
 
@@ -39,6 +42,18 @@ export class TopBarComponent {
   productsService:ProductsService = inject(ProductsService);
 
   ngOnInit() {
+    this.dropButtons = [
+      {
+          icon: 'pi pi-user',
+          command: () => this.router.navigateByUrl('/login'),
+          label: 'Profile'
+      },
+      {
+          icon: 'pi pi-box',
+          command: () => this.router.navigateByUrl('/checkout/resumen'),
+          label: 'Pedidos'
+      },
+    ]
 
   }
 

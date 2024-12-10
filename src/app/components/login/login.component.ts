@@ -4,6 +4,9 @@ import { SplitterModule } from 'primeng/splitter';
 import { FormsModule } from '@angular/forms';
 import { environments } from '../../../environments/environment';
 import { Router } from '@angular/router';
+import { ClientService } from '../../services/client.service';
+import { Client } from '../../models/cliente.interface';
+import { catchError, of, tap } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +22,7 @@ export class LoginComponent {
 
   router:Router = inject(Router);
 
+  clientService = inject(ClientService);
   constructor(private http: HttpClient) {}
 
   login() {
@@ -33,9 +37,27 @@ export class LoginComponent {
 
           if(this.message !== 'Invalid username or password'){
             localStorage.setItem('username', this.username);
-            setTimeout(()=>{
-              this.router.navigate(['']);
-            },200)
+            this.clientService.getClientByEmail(this.username).
+            pipe(
+              catchError(()=>{
+                return  of(false);
+              }),
+              tap(
+                (res)=>{
+                  if(!res){
+                  this.clientService.crearCliente({nombres: this.username ,email: this.username } as Client).subscribe()
+
+                  }
+
+                  setTimeout(()=>{
+                    this.router.navigate(['']);
+                  },200)
+
+
+                }
+              )
+            ).subscribe()
+
           }
 
 

@@ -50,7 +50,7 @@ export class TopBarComponent {
       },
       {
           icon: 'pi pi-box',
-          command: () => this.router.navigateByUrl('/checkout/resumen'),
+          command: () => this.router.navigateByUrl('/ordenes'),
           label: 'Pedidos'
       },
     ]
